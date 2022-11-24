@@ -1,0 +1,24 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Display Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Answers</th>
+            <th scope="col">Accepted</th>
+            <th scope="col">Ratio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userEfficiency of (userEfficiencies | async)">
+            <th scope="row">{{userEfficiency.id}}</th>
+            <td>{{userEfficiency.displayName}}</td>
+            <td>{{userEfficiency.location}}</td>
+            <td>{{userEfficiency.numAnswers}}</td>
+            <td>{{userEfficiency.numAccepted}}</td>
+            <td>{{userEfficiency.acceptedPercent}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

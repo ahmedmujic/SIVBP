@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <div class="col-12 d-flex justify-content-center">
+    <h1>{{ post.postTitle ? post.postTitle : 'No title'}}</h1>
+  </div>
+  <div class="col-12 text-center" >
+    <p [innerHtml]="post.postText"></p>
+  </div>
+  <h3>Comments: </h3>
+  <div class="card mb-2 border" [class.border-primary]="comment.commentId === post.acceptedAnswerId" *ngFor="let comment of post.comments">
+    <h5 class="card-header">{{comment.userDisplayName}}</h5>
+    <div class="card-body">
+      <p class="card-text">{{comment.text}}</p>
+      <button class="btn btn-primary" (click)="acceptAnswer(comment.commentId)" *ngIf="comment.commentId !== post.acceptedAnswerId">Accept answer</button>
+    </div>
+  </div>
+</div>

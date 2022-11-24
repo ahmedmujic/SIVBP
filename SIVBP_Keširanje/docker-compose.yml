@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  sivbp_kesiranje:
+    image: ${DOCKER_REGISTRY-}sivbpkeiranje
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
+        REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    depends_on:
+      - redis
+      - db
+  redis:
+    image: redis:7.0.5-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - redis:/data
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
+    environment:
+      - MSSQL_SA_PASSWORD=b9L9!D8Q*f9wYbPR
+      - ACCEPT_EULA=Y
+    ports:
+      - "5434:1433"
+    volumes:
+      - /d/Database:/var/opt/mssql/data
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PaginatedList } from '../interfaces/pagination.interfaces';
 import { User } from '../interfaces/user.interface';
-import { UserService } from '../services/user.service';
+import { DecoratedUserService } from '../services/decorated-user.service';
 
 @Component({
   selector: 'app-user-page',
@@ -22,7 +22,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   private readonly destroySubject$ = new Subject();
 
-  constructor(private userService: UserService,
+  constructor(private userService: DecoratedUserService,
     private router: Router) { }
 
   ngOnInit() {

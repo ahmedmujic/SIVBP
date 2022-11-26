@@ -19,4 +19,6 @@ export class PostService {
   public acceptAnswer(request: AcceptAnswerRequest){
     return this.httpClient.post(`${this.userBaseUrl}/accept-answer`, request);
   }
+
+
 }

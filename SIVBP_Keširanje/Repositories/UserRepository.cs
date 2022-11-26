@@ -43,7 +43,7 @@ namespace SIVBP_Keširanje.Repositories
             var usersQuery = _context
                 .Users
                 .Include(user => user.Comments)
-                .OrderBy(user => user.DisplayName)
+                .OrderBy(user => user.CreationDate)
                 .Where(user => !string.IsNullOrEmpty(user.AboutMe))
                 .Select(user => new UserOverviewResponse
                 {
